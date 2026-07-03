@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to publish your site — Leick Clockwork</title>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0F1E33;--brass:#C7972E;--brass-deep:#A67C2A;--paper:#FBF8F1;--paper-2:#F2EBDB;--line:#E1D8C4;--slate:#3C4657;--slate-2:#6B7688;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#20242B;color:var(--ink);line-height:1.65;}
+  .page{max-width:780px;margin:0 auto;background:var(--paper);}
+  .mast{background:var(--ink);color:var(--paper);padding:34px 48px;}
+  .mast .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);font-weight:600;}
+  .mast h1{font-family:'Zilla Slab',serif;font-size:26px;font-weight:700;margin-top:8px;}
+  .wrap{padding:40px 48px 56px;}
+  h2{font-family:'Zilla Slab',serif;font-size:20px;margin:34px 0 6px;display:flex;gap:12px;align-items:baseline;}
+  h2 .num{color:var(--brass-deep);font-size:13px;font-weight:700;letter-spacing:.1em;}
+  .rule{height:2px;background:linear-gradient(90deg,var(--brass) 0 40px,var(--line) 40px);margin:8px 0 16px;}
+  p{font-size:14.5px;color:var(--slate);margin-bottom:12px;}
+  p b{color:var(--ink);}
+  ol,ul{margin:6px 0 14px 22px;} li{font-size:14.5px;color:var(--slate);margin-bottom:8px;}
+  li b{color:var(--ink);}
+  .rec{background:var(--paper-2);border-left:3px solid var(--brass);border-radius:4px;padding:16px 20px;margin:8px 0 18px;}
+  .rec .t{font-weight:600;color:var(--ink);font-size:13px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px;}
+  code{background:#eee5d2;padding:1px 6px;border-radius:4px;font-size:13px;color:#7a5b16;}
+  .foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--slate-2);}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="mast">
+    <div class="k">Leick Clockwork</div>
+    <h1>Getting your website live</h1>
+  </div>
+  <div class="wrap">
+    <p>Your whole site is in this folder — four pages (<b>index, services, about, contact</b>) plus <code>styles.css</code> and <code>brand.js</code>. Here's the easiest way to get it online and pointed at <b>leickclockwork.com</b>. No coding required.</p>
+
+    <div class="rec">
+      <div class="t">My recommendation</div>
+      Host the site free on <b>Netlify</b>, then point your Squarespace domain to it. Netlify is built for exactly this — you literally drag the folder onto a webpage and it's live. The contact form also works automatically on Netlify (that's why I built it that way).
+    </div>
+
+    <h2><span class="num">STEP 1</span> Put it online (2 minutes)</h2>
+    <div class="rule"></div>
+    <ol>
+      <li>Go to <b>app.netlify.com/drop</b> in your browser.</li>
+      <li>Drag this entire <b>leick-clockwork-site folder</b> onto the page.</li>
+      <li>That's it — Netlify gives you a live link right away (something like <code>random-name.netlify.app</code>). Your site is on the internet.</li>
+      <li>Create a free account when it prompts you, so the site stays up and you can manage it.</li>
+    </ol>
+    <p>Open that link on your phone and your computer to make sure everything looks right.</p>
+
+    <h2><span class="num">STEP 2</span> Point your domain to it (10 minutes)</h2>
+    <div class="rule"></div>
+    <p>Right now <b>leickclockwork.com</b> lives at Squarespace. You'll tell it to point at your new Netlify site instead.</p>
+    <ol>
+      <li>In Netlify: open your site → <b>Domain settings</b> → <b>Add a custom domain</b> → type <code>leickclockwork.com</code>.</li>
+      <li>Netlify shows you a few <b>DNS records</b> to add (an "A record" and a "CNAME"). Keep that tab open.</li>
+      <li>In Squarespace: go to your <b>Domains</b> settings → <b>DNS settings</b> for leickclockwork.com → add the records Netlify gave you.</li>
+      <li>Wait a bit (usually under an hour, sometimes a few). Netlify turns on the secure lock (HTTPS) automatically.</li>
+    </ol>
+    <p>If the DNS part feels fiddly, that's normal — Netlify has a step-by-step help page, or reply and I'll walk you through the exact records once you can see them.</p>
+
+    <h2><span class="num">STEP 3</span> Turn on the contact form (1 minute)</h2>
+    <div class="rule"></div>
+    <p>The "Book your free audit" form works automatically on Netlify. To get the submissions:</p>
+    <ul>
+      <li>In Netlify, go to <b>Forms</b> → you'll see a form called <b>audit</b>.</li>
+      <li>Click <b>Form notifications</b> → add an email notification to <b>ryleick@gmail.com</b>.</li>
+      <li>Now every audit request lands in your inbox. Done.</li>
+    </ul>
+
+    <h2><span class="num">TIP</span> Making changes later</h2>
+    <div class="rule"></div>
+    <p>To update the site, edit the files and drag the folder onto Netlify again — it replaces the old version. When you're ready, I can also help you add pages, swap in a real photo of you on the About page, or connect a custom email like <b>ryan@leickclockwork.com</b>.</p>
+
+    <div class="foot">Leick Clockwork · Ryan Leick · 563-581-2151 · leickclockwork.com</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Leick Clockwork | Book your free audit</title>
+<meta name="description" content="Get your free website & AI audit. Call, text, or email Ryan Leick — Leick Clockwork, serving the Omaha metro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span data-logo="icon" data-size="38"></span>
+      <span class="bname">Leick<em>Clockwork</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#form" class="btn btn-brass">Free Audit</a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Get in touch</span>
+    <h1>Start with a free audit.</h1>
+    <p>No cost, no pressure — just a plain look at where you're losing time and jobs, and what it'd take to fix it. Reach out however's easiest.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container contact-grid">
+
+    <div class="contact-methods reveal">
+      <a class="cm" href="tel:5635812151">
+        <span class="cm-ico" data-ico="phone"></span>
+        <span><span class="cm-l">Call or text</span><span class="cm-v">563-581-2151</span></span>
+      </a>
+      <a class="cm" href="mailto:ryleick@gmail.com">
+        <span class="cm-ico" data-ico="mail"></span>
+        <span><span class="cm-l">Email</span><span class="cm-v">ryleick@gmail.com</span></span>
+      </a>
+      <div class="cm">
+        <span class="cm-ico" data-ico="globe"></span>
+        <span><span class="cm-l">Serving</span><span class="cm-v">The Omaha Metro</span></span>
+      </div>
+      <div class="cm">
+        <span class="cm-ico" data-ico="text"></span>
+        <span><span class="cm-l">Hours</span><span class="cm-v">Flexible — evenings &amp; weekends OK</span></span>
+      </div>
+    </div>
+
+    <div class="form-card reveal" id="form">
+      <h2>Book your free audit</h2>
+      <p class="fd">Fill this out and I'll get back to you within a day to set up a quick, no-pressure look at your business.</p>
+      <form name="audit" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?submitted=true">
+        <input type="hidden" name="form-name" value="audit">
+        <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" required placeholder="Ryan Smith"></div>
+          <div class="field"><label for="business">Business name</label><input id="business" name="business" type="text" placeholder="Smith Plumbing"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555"></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="field"><label for="message">What's on your mind? (optional)</label><textarea id="message" name="message" placeholder="Tell me a bit about your business, or what's not working online right now."></textarea></div>
+        <button type="submit" class="btn btn-brass" style="width:100%;justify-content:center;">Send it over</button>
+        <p style="font-size:12.5px;color:var(--slate-2);text-align:center;margin-top:14px;">Prefer to talk? Just call or text <a href="tel:5635812151" style="color:var(--brass-deep);font-weight:600;">563-581-2151</a>.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand" style="gap:11px;"><span data-logo="icon" data-size="34"></span><span class="bname">Leick<em>Clockwork</em></span></div>
+        <p>Websites and systems that run like clockwork, built for trades businesses across the Omaha metro.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Get in touch</h5>
+        <a href="tel:5635812151">563-581-2151</a>
+        <a href="mailto:ryleick@gmail.com">ryleick@gmail.com</a>
+        <span class="fi">Omaha Metro, NE</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> Leick Clockwork. All rights reserved.</span>
+      <span class="tag">Runs like clockwork.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="brand.js"></script>
+</body>
+</html>
