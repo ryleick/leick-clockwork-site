@@ -1,56 +1,6 @@
 /* Leick Clockwork — shared brand script */
 (function(){
-  const INK='#0F1E33', BRASS='#C7972E', BRASSL='#E0BE72', PAPER='#FBF8F1', JEWEL='#8A2F2A';
-
-  function gearPath(cx,cy,rTip,rVal,teeth){
-    const step=(Math.PI*2)/teeth; let d="";
-    for(let i=0;i<teeth;i++){const b=i*step-Math.PI/2;
-      [[b,rVal],[b+step*0.30,rTip],[b+step*0.70,rTip],[b+step,rVal]].forEach((p,idx)=>{
-        const x=cx+Math.cos(p[0])*p[1], y=cy+Math.sin(p[0])*p[1];
-        d+=(i===0&&idx===0?"M":"L")+x.toFixed(2)+" "+y.toFixed(2)+" ";});}
-    return d+"Z";
-  }
-  function gear(cx,cy,rTip,rVal,teeth,fill,jewel){
-    let s='<path d="'+gearPath(cx,cy,rTip,rVal,teeth)+'" fill="'+fill+'"/>';
-    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(rVal*0.46)+'" fill="'+INK+'"/>';
-    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(rVal*0.20)+'" fill="'+(jewel||fill)+'"/>';
-    return s;
-  }
-  function ptC(cx,cy,r,deg){const t=deg*Math.PI/180;return [cx+r*Math.sin(t),cy-r*Math.cos(t)];}
-  function cArc(cx,cy,r,w,color,op){const [sx,sy]=ptC(cx,cy,r,122),[ex,ey]=ptC(cx,cy,r,58);
-    return '<path d="M'+sx.toFixed(1)+' '+sy.toFixed(1)+' A '+r+' '+r+' 0 1 1 '+ex.toFixed(1)+' '+ey.toFixed(1)+'" fill="none" stroke="'+color+'" stroke-width="'+w+'" stroke-linecap="round" opacity="'+(op||1)+'"/>';}
-  function tickAt(cx,cy,deg,rOut,rIn,w,color){const [x1,y1]=ptC(cx,cy,rIn,deg),[x2,y2]=ptC(cx,cy,rOut,deg);
-    return '<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="'+color+'" stroke-width="'+w+'" stroke-linecap="round"/>';}
-
-  // full CL emblem with gear engine
-  function emblem(size, spin){
-    let g='';
-    g+='<circle cx="110" cy="110" r="100" fill="'+INK+'"/>';
-    g+=cArc(110,110,96,1.2,BRASSL,.5);
-    g+=cArc(110,110,88,15,BRASS,1);
-    g+=cArc(110,110,80,1.2,BRASSL,.45);
-    g+=tickAt(110,110,0,74,66,2.4,BRASS)+tickAt(110,110,180,74,66,2.4,BRASS)+tickAt(110,110,270,74,66,2.4,BRASS);
-    const engine='<g'+(spin?' class="spin-slow" style="transform-origin:110px 150px"':'')+'>'
-      +gear(102,152,28,21,14,BRASS,JEWEL)+gear(70,150,16,11,10,BRASSL,JEWEL)+gear(130,166,13,9,9,BRASSL,JEWEL)+'</g>';
-    g+=engine;
-    g+='<circle cx="110" cy="110" r="5" fill="'+INK+'" stroke="'+BRASS+'" stroke-width="1.5"/>';
-    g+='<line x1="110" y1="110" x2="110" y2="52" stroke="'+PAPER+'" stroke-width="5.5" stroke-linecap="round"/>';
-    g+='<line x1="110" y1="110" x2="150" y2="110" stroke="'+PAPER+'" stroke-width="4" stroke-linecap="round"/>';
-    g+='<circle cx="110" cy="110" r="3.6" fill="'+BRASSL+'"/>';
-    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
-  }
-  // simplified CL icon
-  function icon(size){
-    let g='';
-    g+='<circle cx="50" cy="50" r="46" fill="'+INK+'"/>';
-    g+=cArc(50,50,40,8,BRASS,1);
-    g+=tickAt(50,50,0,34,30,2.2,BRASS)+tickAt(50,50,180,34,30,2.2,BRASS)+tickAt(50,50,270,34,30,2.2,BRASS);
-    g+='<circle cx="50" cy="50" r="3" fill="'+INK+'" stroke="'+BRASS+'" stroke-width="1"/>';
-    g+='<line x1="50" y1="50" x2="50" y2="24" stroke="'+PAPER+'" stroke-width="4" stroke-linecap="round"/>';
-    g+='<line x1="50" y1="50" x2="67" y2="50" stroke="'+PAPER+'" stroke-width="3" stroke-linecap="round"/>';
-    g+='<circle cx="50" cy="50" r="2.4" fill="'+BRASSL+'"/>';
-    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
-  }
+  const LOGO_SRC={emblem:'logo/logo.png', icon:'logo/leick-logo-slimC.svg'};
 
   const ICONS={
     web:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg>',
@@ -68,7 +18,8 @@
     document.querySelectorAll('[data-logo]').forEach(el=>{
       const type=el.getAttribute('data-logo');
       const size=parseInt(el.getAttribute('data-size')||'40',10);
-      el.innerHTML = type==='emblem' ? emblem(size, el.hasAttribute('data-spin')) : icon(size);
+      const spin=el.hasAttribute('data-spin')?' class="spin-slow"':'';
+      el.innerHTML='<img src="'+LOGO_SRC[type]+'" width="'+size+'" height="'+size+'" alt="Leick Clockwork"'+spin+'>';
     });
     document.querySelectorAll('[data-ico]').forEach(el=>{
       el.innerHTML = ICONS[el.getAttribute('data-ico')]||'';
