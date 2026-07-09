@@ -1,6 +1,68 @@
 /* Leick Clockwork — shared brand script */
 (function(){
-  const LOGO_SRC={emblem:'logo/logo.png', icon:'logo/leick-logo-slimC.svg'};
+  const INK='#0F1E33', BRASS='#C7972E', BRASSL='#E0BE72', PAPER='#FBF8F1', JEWEL='#8A2F2A';
+
+  function gearPath(cx,cy,rTip,rVal,teeth){
+    const step=(Math.PI*2)/teeth; let d="";
+    for(let i=0;i<teeth;i++){const b=i*step-Math.PI/2;
+      [[b,rVal],[b+step*0.30,rTip],[b+step*0.70,rTip],[b+step,rVal]].forEach((p,idx)=>{
+        const x=cx+Math.cos(p[0])*p[1], y=cy+Math.sin(p[0])*p[1];
+        d+=(i===0&&idx===0?"M":"L")+x.toFixed(2)+" "+y.toFixed(2)+" ";});}
+    return d+"Z";
+  }
+  function gear(cx,cy,rTip,rVal,teeth,fill,jewel){
+    let s='<path d="'+gearPath(cx,cy,rTip,rVal,teeth)+'" fill="'+fill+'"/>';
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(rVal*0.46)+'" fill="'+INK+'"/>';
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(rVal*0.20)+'" fill="'+(jewel||fill)+'"/>';
+    return s;
+  }
+  function ptC(cx,cy,r,deg){const t=deg*Math.PI/180;return [cx+r*Math.sin(t),cy-r*Math.cos(t)];}
+  function cArc(cx,cy,r,w,color,op){const [sx,sy]=ptC(cx,cy,r,122),[ex,ey]=ptC(cx,cy,r,58);
+    return '<path d="M'+sx.toFixed(1)+' '+sy.toFixed(1)+' A '+r+' '+r+' 0 1 1 '+ex.toFixed(1)+' '+ey.toFixed(1)+'" fill="none" stroke="'+color+'" stroke-width="'+w+'" stroke-linecap="round" opacity="'+(op||1)+'"/>';}
+  function tickAt(cx,cy,deg,rOut,rIn,w,color){const [x1,y1]=ptC(cx,cy,rIn,deg),[x2,y2]=ptC(cx,cy,rOut,deg);
+    return '<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="'+color+'" stroke-width="'+w+'" stroke-linecap="round"/>';}
+
+  // full CL emblem with a real meshing gear engine (each gear spins on its OWN center)
+  function emblem(size, spin){
+    let g='';
+    g+='<circle cx="110" cy="110" r="100" fill="'+INK+'"/>';
+    g+=cArc(110,110,96,1.2,BRASSL,.5);
+    g+=cArc(110,110,88,12,BRASS,1);
+    g+=cArc(110,110,80,1.2,BRASSL,.45);
+    g+=tickAt(110,110,0,74,66,2.4,BRASS)+tickAt(110,110,180,74,66,2.4,BRASS)+tickAt(110,110,270,74,66,2.4,BRASS);
+    // --- meshing engine: shared tooth pitch, centers spaced to interlock ---
+    const Ax=104,Ay=150,Apr=21,Atip=24,Aval=18,At=14;          // large main
+    const angC=332*Math.PI/180,dAC=Apr+15;                     // medium upper-right
+    const Cx=Ax+Math.cos(angC)*dAC,Cy=Ay+Math.sin(angC)*dAC;
+    const angB=200*Math.PI/180,dAB=Apr+10.5;                   // small lower-left
+    const Bx=Ax+Math.cos(angB)*dAB,By=Ay+Math.sin(angB)*dAB;
+    // each gear wrapped in its own <g> that rotates about its own center
+    function spinG(cx,cy,inner,dir){
+      const cls = spin ? (dir>0?'lc-gearA':'lc-gearB') : '';
+      return '<g'+(cls?' class="'+cls+'" style="transform-origin:'+cx+'px '+cy+'px"':'')+'>'+inner+'</g>';
+    }
+    g+=spinG(Ax,Ay, gear(Ax,Ay,Atip,Aval,At,BRASS,JEWEL), 1);   // main, one way
+    g+=spinG(Cx,Cy, gear(Cx,Cy,18,15,10,BRASSL,JEWEL), -1);     // medium, other way
+    g+=spinG(Bx,By, gear(Bx,By,13,10.5,7,BRASSL,JEWEL), -1);    // small, other way
+    // hands (the L) — sit still, drawn on top
+    g+='<circle cx="110" cy="110" r="5" fill="'+INK+'" stroke="'+BRASS+'" stroke-width="1.5"/>';
+    g+='<line x1="110" y1="110" x2="110" y2="52" stroke="'+PAPER+'" stroke-width="5.5" stroke-linecap="round"/>';
+    g+='<line x1="110" y1="110" x2="150" y2="110" stroke="'+PAPER+'" stroke-width="4" stroke-linecap="round"/>';
+    g+='<circle cx="110" cy="110" r="3.6" fill="'+BRASSL+'"/>';
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
+  }
+  // simplified CL icon
+  function icon(size){
+    let g='';
+    g+='<circle cx="50" cy="50" r="46" fill="'+INK+'"/>';
+    g+=cArc(50,50,40,6.5,BRASS,1);
+    g+=tickAt(50,50,0,34,30,2.2,BRASS)+tickAt(50,50,180,34,30,2.2,BRASS)+tickAt(50,50,270,34,30,2.2,BRASS);
+    g+='<circle cx="50" cy="50" r="3" fill="'+INK+'" stroke="'+BRASS+'" stroke-width="1"/>';
+    g+='<line x1="50" y1="50" x2="50" y2="24" stroke="'+PAPER+'" stroke-width="4" stroke-linecap="round"/>';
+    g+='<line x1="50" y1="50" x2="67" y2="50" stroke="'+PAPER+'" stroke-width="3" stroke-linecap="round"/>';
+    g+='<circle cx="50" cy="50" r="2.4" fill="'+BRASSL+'"/>';
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
+  }
 
   const ICONS={
     web:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg>',
@@ -18,8 +80,7 @@
     document.querySelectorAll('[data-logo]').forEach(el=>{
       const type=el.getAttribute('data-logo');
       const size=parseInt(el.getAttribute('data-size')||'40',10);
-      const spin=el.hasAttribute('data-spin')?' class="spin-slow"':'';
-      el.innerHTML='<img src="'+LOGO_SRC[type]+'" width="'+size+'" height="'+size+'" alt="Leick Clockwork"'+spin+'>';
+      el.innerHTML = type==='emblem' ? emblem(size, el.hasAttribute('data-spin')) : icon(size);
     });
     document.querySelectorAll('[data-ico]').forEach(el=>{
       el.innerHTML = ICONS[el.getAttribute('data-ico')]||'';

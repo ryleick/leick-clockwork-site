@@ -81,16 +81,21 @@ section{padding:84px 0;}
 .tick-rule{height:2px;width:100%;background:linear-gradient(90deg,var(--brass) 0 44px,var(--line) 44px);}
 
 /* benefit strip */
-.benefits{background:var(--paper);padding:0;}
+.benefits{background:var(--paper);padding:44px 0 0;}
+.benefits-tagline{text-align:center;font-family:'Zilla Slab',serif;font-size:26px;font-weight:700;
+  color:var(--ink);margin:0 0 20px;letter-spacing:-.01em;}
+.benefits-tagline span{color:var(--brass-deep);font-weight:600;}
+@media(max-width:920px){.benefits-tagline{font-size:22px;}
+  .benefits-tagline span{display:block;font-size:16px;margin-top:4px;}}
 .benefits .band{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
-  margin-top:-46px;position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;}
+  position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;}
 .benefit{padding:30px 30px;display:flex;flex-direction:column;gap:6px;border-right:1px solid var(--line);}
 .benefit:last-child{border-right:none;}
 .benefit .bh{font-family:'Zilla Slab',serif;font-size:21px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:11px;}
 .benefit .bh .bi{width:34px;height:34px;border-radius:50%;background:var(--paper-2);border:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;color:var(--brass-deep);flex:none;}
 .benefit p{font-size:13.5px;color:var(--slate);margin:0;}
-@media (max-width:920px){.benefits .band{grid-template-columns:1fr;margin-top:-30px;}
+@media (max-width:920px){.benefits .band{grid-template-columns:1fr;}
   .benefit{border-right:none;border-bottom:1px solid var(--line);}
   .benefit:last-child{border-bottom:none;}}
 
@@ -231,8 +236,12 @@ section{padding:84px 0;}
 .reveal.in{opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}
   .hero .bg-emblem{animation:none !important;}}
-@media (prefers-reduced-motion:no-preference){.spin-slow{animation:spin 60s linear infinite;transform-origin:center;}}
-@keyframes spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:no-preference){
+  .lc-gearA{animation:lc-spin 12s linear infinite;}
+  .lc-gearB{animation:lc-spin-rev 12s linear infinite;}
+}
+@keyframes lc-spin{to{transform:rotate(360deg);}}
+@keyframes lc-spin-rev{to{transform:rotate(-360deg);}}
 
 /* ---------- responsive ---------- */
 @media (max-width:920px){
