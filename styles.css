@@ -253,6 +253,7 @@ section{padding:84px 0;}
   .svc-detail.flip .svc-text{order:0;}
   .about-grid{grid-template-columns:1fr;gap:30px;}
   .about-photo{aspect-ratio:16/10;max-width:420px;}
+  .about-photo .ryan-photo{margin:0;object-position:center 10%;}
   .contact-grid{grid-template-columns:1fr;gap:32px;}
   .footer-top{grid-template-columns:1fr;gap:28px;}
 }
