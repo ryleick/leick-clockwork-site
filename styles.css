@@ -57,7 +57,9 @@ h1,h2,h3,h4{font-family:'Zilla Slab',serif;letter-spacing:-.01em;line-height:1.1
 
 /* ---------- hero ---------- */
 .hero{background:radial-gradient(120% 130% at 78% 8%,var(--ink-2) 0%,var(--ink-3) 60%);color:var(--paper);position:relative;overflow:hidden;}
-.hero .bg-emblem{position:absolute;right:-90px;top:50%;transform:translateY(-50%);opacity:.10;pointer-events:none;}
+.page-hero{position:relative;overflow:hidden;}
+.page-hero .container{position:relative;z-index:2;}
+.hero .bg-emblem,.page-hero .bg-emblem{position:absolute;right:-90px;top:-70px;opacity:.10;pointer-events:none;}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
   padding:88px 0 96px;}
 .hero .eyebrow{color:var(--brass-lt);}
@@ -252,8 +254,8 @@ section{padding:84px 0;}
 @media (max-width:920px){
   .hero-inner{grid-template-columns:1fr;gap:20px;padding:64px 0 72px;}
   .hero .hero-visual{display:none;}
-  .hero .bg-emblem{right:-50px;}
-  .hero .bg-emblem svg{width:220px;height:220px;}
+  .hero .bg-emblem,.page-hero .bg-emblem{right:-50px;}
+  .hero .bg-emblem svg,.page-hero .bg-emblem svg{width:220px;height:220px;}
   .hero h1{font-size:42px;}
   .hero-text{text-align:center;}
   .hero p.sub{margin-left:auto;margin-right:auto;}
