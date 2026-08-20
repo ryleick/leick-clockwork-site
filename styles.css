@@ -82,6 +82,17 @@ section{padding:84px 0;}
 .section-head p{margin-top:14px;font-size:17px;color:var(--slate);}
 .tick-rule{height:2px;width:100%;background:linear-gradient(90deg,var(--brass) 0 44px,var(--line) 44px);}
 
+/* trust strip */
+.trust-strip{background:var(--ink);padding:14px 0;}
+.trust-row{display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:500;
+  color:rgba(251,248,241,.9);letter-spacing:.005em;}
+.trust-item .ti{display:flex;align-items:center;justify-content:center;width:19px;height:19px;
+  border-radius:50%;border:1.5px solid var(--brass);color:var(--brass);flex:none;}
+.trust-item .ti svg{width:11px;height:11px;}
+@media(max-width:860px){.trust-row{gap:12px;flex-direction:column;align-items:flex-start;}
+  .trust-strip{padding:16px 0;}}
+
 /* benefit strip */
 .benefits{background:var(--paper);padding:44px 0 0;}
 .benefits-tagline{text-align:center;font-family:'Zilla Slab',serif;font-size:26px;font-weight:700;
@@ -150,6 +161,35 @@ section{padding:84px 0;}
 .price-row .pr{font-family:'Zilla Slab',serif;font-weight:600;font-size:18px;color:var(--brass-deep);white-space:nowrap;}
 .price-row .pr.free{color:var(--brass-deep);}
 .price-note{text-align:center;margin-top:20px;font-size:14px;color:var(--slate-2);}
+
+/* itemized pricing tiers */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
+.tier{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 26px 24px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;}
+.tier.featured{border:2px solid var(--brass);box-shadow:0 10px 30px rgba(199,151,46,.16);}
+.tier-flag{position:absolute;top:-11px;left:26px;background:var(--brass);color:#231a06;
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:20px;}
+.tier-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:6px;}
+.tier-name{font-family:'Zilla Slab',serif;font-size:19px;font-weight:700;color:var(--ink);}
+.tier-price{font-family:'Zilla Slab',serif;font-size:20px;font-weight:700;color:var(--brass-deep);white-space:nowrap;}
+.tier-price.free{color:var(--brass-deep);}
+.tier-sub{font-size:13.5px;color:var(--slate);margin-bottom:16px;line-height:1.5;}
+.tier-list{list-style:none;padding:0;margin:0 0 4px;display:flex;flex-direction:column;gap:9px;flex:1;}
+.tier-list li{position:relative;padding-left:22px;font-size:13.5px;color:var(--slate);line-height:1.55;}
+.tier-list li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;
+  border:2px solid var(--brass);}
+.tier-list li b{color:var(--ink);font-weight:600;}
+.tier-note{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--slate-2);line-height:1.5;}
+
+/* satisfaction guarantee */
+.guarantee{margin-top:26px;background:linear-gradient(160deg,var(--ink-2),var(--ink-3));
+  border-radius:16px;padding:28px 32px;display:flex;gap:20px;align-items:flex-start;box-shadow:var(--shadow);}
+.guarantee .g-mark{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--brass);
+  display:flex;align-items:center;justify-content:center;color:var(--brass);}
+.guarantee .g-title{font-family:'Zilla Slab',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;}
+.guarantee p{font-size:14px;color:rgba(251,248,241,.82);line-height:1.6;margin:0;}
+@media(max-width:640px){.guarantee{flex-direction:column;gap:14px;padding:24px;}}
 
 /* CTA band */
 .cta-band{background:radial-gradient(120% 160% at 20% 10%,var(--ink-2),var(--ink-3));color:var(--paper);text-align:center;}
